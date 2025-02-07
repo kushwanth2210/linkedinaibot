@@ -85,7 +85,7 @@ class LinkedInJobScraper:
 
 # Example usage
 if __name__ == "__main__":
-    api_key = 'api_key'
+    api_key = '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'
     scraper = LinkedInJobScraper(title="Python Developer", location="United States", api_key=api_key)
     scraper.run()
 
