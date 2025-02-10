@@ -1,0 +1,54 @@
+# Python-related
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+venv/
+env/
+*.venv
+.DS_Store
+
+# Poetry & Virtual Environments
+poetry.lock
+.pdm.toml
+pip-wheel-metadata/
+*.log
+
+# Editor & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.cache
+
+# Environment Variables
+.env
+.env.*
+
+# Build and Distribution
+dist/
+build/
+*.spec
+
+# LaTeX files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.run.xml
+*.synctex.gz
+
+# PDF & Temporary Outputs
+*.pdf
+*.synctex*
+*.fls
+*.fdb_latexmk

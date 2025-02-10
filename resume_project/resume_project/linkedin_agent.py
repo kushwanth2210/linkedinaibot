@@ -1,19 +1,28 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import json
+from dotenv import load_dotenv
 from langchain_anthropic import ChatAnthropic
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
+# Load environment variables
+load_dotenv()
+
 class LinkedInJobScraper:
-    def __init__(self, title, location, api_key, num_jobs=10):
+    def __init__(self, title, location, num_jobs=10):
         self.title = title.replace(' ', '%20')
         self.location = location.replace(' ', '%20')
         self.base_search_url = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
         self.job_ids = []
         self.job_details = []
         self.num_jobs = num_jobs  # Number of jobs to fetch
-
+        
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not api_key:
+            raise ValueError("Anthropic API Key is missing. Please check your .env file.")
+        
         # Initialize the Anthropic model
         self.llm = ChatAnthropic(
             model_name="claude-3-opus-20240229",
@@ -25,9 +34,13 @@ class LinkedInJobScraper:
         while len(self.job_ids) < self.num_jobs:
             search_url = f"{self.base_search_url}?keywords={self.title}&location={self.location}&start={start}"
             response = requests.get(search_url)
+            if response.status_code != 200:
+                print(f"Failed to fetch job listings: {response.status_code}")
+                return
+            
             list_soup = BeautifulSoup(response.text, "html.parser")
             page_jobs = list_soup.find_all("li")
-
+            
             for job in page_jobs:
                 base_card_div = job.find("div", {"class": "base-card"})
                 if base_card_div:
@@ -38,18 +51,19 @@ class LinkedInJobScraper:
                             self.job_ids.append(job_id)
                             if len(self.job_ids) >= self.num_jobs:
                                 break
-
             start += 25  # Move to the next page
 
     def fetch_job_details(self):
         for job_id in self.job_ids:
             job_url = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{job_id}"
             job_response = requests.get(job_url)
+            if job_response.status_code != 200:
+                print(f"Failed to fetch job details for job ID {job_id}")
+                continue
+            
             soup = BeautifulSoup(job_response.text, 'html.parser')
-
             job_description = soup.get_text(separator='\n', strip=True)
-
-            # LLM Prompt Template
+            
             prompt_template = PromptTemplate(
                 input_variables=["job_description"],
                 template="""
@@ -60,7 +74,7 @@ class LinkedInJobScraper:
                 4. **Key Responsibilities**
                 5. **Required Skills**
                 6. **About the Company**
-
+                
                 Job Description:
                 {job_description}
                 """
@@ -68,24 +82,27 @@ class LinkedInJobScraper:
 
             llm_chain = LLMChain(llm=self.llm, prompt=prompt_template)
             response = llm_chain.run({"job_description": job_description})
-
+            
             self.job_details.append({
                 "Job ID": job_id,
                 "Details": response
             })
 
     def save_to_json(self, filename="linkedin_job_details.json"):
-        with open(filename, 'w') as json_file:
+        with open(filename, 'w', encoding='utf-8') as json_file:
             json.dump(self.job_details, json_file, indent=4)
 
     def run(self):
         self.fetch_job_ids()
-        self.fetch_job_details()
-        self.save_to_json()
+        if self.job_ids:
+            self.fetch_job_details()
+            self.save_to_json()
+        else:
+            print("No jobs found for the given criteria.")
 
-# Example usage
 if __name__ == "__main__":
-    api_key = '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'
-    scraper = LinkedInJobScraper(title="Python Developer", location="United States", api_key=api_key)
+    title = input("Enter job title: ")
+    location = input("Enter job location: ")
+    scraper = LinkedInJobScraper(title, location)
     scraper.run()
-
+    print("Job scraping completed and saved to linkedin_job_details.json")
