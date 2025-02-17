@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from dotenv import load_dotenv
-from langchain_anthropic import ChatAnthropic
+from models import LanguageModels  # Import LanguageModels from models.py
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
@@ -11,7 +11,7 @@ from langchain.chains import LLMChain
 load_dotenv()
 
 class LinkedInJobScraper:
-    def __init__(self, title, location, num_jobs=10):
+    def __init__(self, title, location, num_jobs=10, model_name="claude-3-opus-20240229"):
         self.title = title.replace(' ', '%20')
         self.location = location.replace(' ', '%20')
         self.base_search_url = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
@@ -19,15 +19,8 @@ class LinkedInJobScraper:
         self.job_details = []
         self.num_jobs = num_jobs  # Number of jobs to fetch
         
-        api_key = os.getenv("ANTHROPIC_API_KEY")
-        if not api_key:
-            raise ValueError("Anthropic API Key is missing. Please check your .env file.")
-        
-        # Initialize the Anthropic model
-        self.llm = ChatAnthropic(
-            model_name="claude-3-opus-20240229",
-            anthropic_api_key=api_key
-        )
+        # Initialize the Language Model
+        self.language_model = LanguageModels(model=model_name).get_model()
 
     def fetch_job_ids(self):
         start = 0
@@ -80,7 +73,7 @@ class LinkedInJobScraper:
                 """
             )
 
-            llm_chain = LLMChain(llm=self.llm, prompt=prompt_template)
+            llm_chain = LLMChain(llm=self.language_model, prompt=prompt_template)
             response = llm_chain.run({"job_description": job_description})
             
             self.job_details.append({

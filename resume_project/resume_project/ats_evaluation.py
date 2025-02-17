@@ -5,7 +5,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
 
-# Download stopwords if not already available
 nltk.download('stopwords')
 
 class ATSAnalyzer:
@@ -32,9 +31,9 @@ class ATSAnalyzer:
         Preprocess text: convert to lowercase, remove punctuation, and remove stopwords.
         """
         text = text.lower()
-        text = text.translate(str.maketrans("", "", string.punctuation))  # Remove punctuation
+        text = text.translate(str.maketrans("", "", string.punctuation))  
         words = text.split()
-        words = [word for word in words if word not in self.stop_words]  # Remove stopwords
+        words = [word for word in words if word not in self.stop_words]
         return " ".join(words)
 
     def compute_similarity(self, text1, text2):
@@ -44,19 +43,18 @@ class ATSAnalyzer:
         vectorizer = TfidfVectorizer()
         tfidf_matrix = vectorizer.fit_transform([text1, text2])
         similarity_score = cosine_similarity(tfidf_matrix[0], tfidf_matrix[1])[0][0]
-        return round(similarity_score * 100, 2)  # Convert to percentage
+        return round(similarity_score * 100, 2)
 
     def get_ats_score(self):
         """
         Extracts resume text, preprocesses both resume and job description, and calculates ATS score.
         """
-        # Extract text from resume
         resume_text = self.extract_text_from_pdf(self.resume_path)
-
+        
         if not resume_text:
             print("Error: Could not extract text from the resume file.")
             return None
-
+        
         # Preprocess text
         job_description_text = self.preprocess_text(self.job_description)
         resume_text = self.preprocess_text(resume_text)
@@ -65,7 +63,7 @@ class ATSAnalyzer:
         ats_score = self.compute_similarity(job_description_text, resume_text)
         return ats_score
 
-# Example job description (from a variable)
+
 job_description = """
 Netflix is looking for a Software Engineer (L5), Python Platform. The candidate must have expertise in:
 - Python (NumPy, TensorFlow, PyTorch, Scikit-learn)
@@ -74,7 +72,7 @@ Netflix is looking for a Software Engineer (L5), Python Platform. The candidate 
 - Open-source contributions in AI/ML
 - NLP and data processing (feature engineering, model evaluation)
 - AI/ML security (risk management, robustness testing, cloud deployment with CI/CD, API design)
-- Strong collaboration and cross-functional teamwork
+- Strong collaboration and cross-functional teamwork.
 
 The candidate should demonstrate experience in:
 - End-to-end model deployment and scaling
@@ -82,10 +80,8 @@ The candidate should demonstrate experience in:
 - Working on large-scale distributed systems
 """
 
-# Example resume file (PDF)
-resume_file = "updated_resume.pdf"  # Replace with the actual resume file path
+resume_file = "updated_resume.pdf"
 
-# Run ATS analysis
 ats_analyzer = ATSAnalyzer(job_description, resume_file)
 score = ats_analyzer.get_ats_score()
 

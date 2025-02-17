@@ -8,7 +8,6 @@ from langchain.callbacks import StreamingStdOutCallbackHandler
 # Load environment variables
 load_dotenv()
 
-
 class LanguageModels:
     def __init__(self, model="claude-3-opus-20240229"):
         """
@@ -73,9 +72,8 @@ class LanguageModels:
             callbacks=[StreamingStdOutCallbackHandler()],
         )
 
-
 # Example usage:
 if __name__ == "__main__":
-    lm = LanguageModels(model="claude-3-opus-20240229")  # Default to Claude
+    lm = LanguageModels(model="claude-3-opus-20240229")
     model_instance = lm.get_model()
     print(f"Using model: {model_instance}")
