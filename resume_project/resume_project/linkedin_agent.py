@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from models import LanguageModels  # Import LanguageModels from models.py
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+from storage.gdrive import upload_to_google_drive  # Import the function to upload files to Google Drive
 
 # Load environment variables
 load_dotenv()
@@ -82,8 +83,18 @@ class LinkedInJobScraper:
             })
 
     def save_to_json(self, filename="linkedin_job_details.json"):
+        """Save job details locally and upload to Google Drive."""
         with open(filename, 'w', encoding='utf-8') as json_file:
             json.dump(self.job_details, json_file, indent=4)
+        
+        print(f"Saved job details locally: {filename}")
+        
+        # Upload to Google Drive
+        try:
+            file_id = upload_to_google_drive(filename)
+            print(f"✅ Job details uploaded to Google Drive (File ID: {file_id})")
+        except Exception as e:
+            print(f"❌ Failed to upload job details to Google Drive: {str(e)}")
 
     def run(self):
         self.fetch_job_ids()
@@ -98,4 +109,4 @@ if __name__ == "__main__":
     location = input("Enter job location: ")
     scraper = LinkedInJobScraper(title, location)
     scraper.run()
-    print("Job scraping completed and saved to linkedin_job_details.json")
+    print("Job scraping completed and uploaded to Google Drive.")
