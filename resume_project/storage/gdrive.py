@@ -69,6 +69,27 @@ class GoogleDriveHandler(GoogleDriveManager):
     """
     Concrete implementation of GoogleDriveManager to handle file operations.
     """
+    def get_file_id(self, file_name):
+        """
+        Retrieves the Google Drive file ID for a given file name.
+        :param file_name: Name of the file to search for.
+        :return: File ID if found, else None.
+        """
+        file_list = self.drive.ListFile({'q': f"title = '{file_name}' and trashed=false"}).GetList()
+        if file_list:
+            return file_list[0]['id']
+        return None
+    
+    def download_file(self, file_id, local_path):
+        """
+        Downloads a file from Google Drive given its file ID.
+        :param file_id: ID of the file in Google Drive.
+        :param local_path: Path to save the file locally.
+        """
+        file = self.drive.CreateFile({'id': file_id})
+        file.GetContentFile(local_path)
+        print(f"✅ Downloaded '{local_path}' from Google Drive.")
+
 
     def upload_file(self, file_path: str, file_name: str):
         """
