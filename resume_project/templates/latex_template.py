@@ -17,6 +17,7 @@ tex_template_content=r"""
 \fancyhf{}
 
 \begin{document}
+\sloppy  % Relax line justification (or use \raggedright for left alignment)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -40,6 +41,26 @@ Github: \href{https://github.com/\VAR{github}}{github.com/\VAR{github}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+%     PROFESSIONAL SUMMARY
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Professional Summary}
+
+\VAR{professional_summary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     SKILLS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Skills}
+
+\BLOCK{ for skill_category in skills }
+\textbf{\VAR{skill_category.category}}: \VAR{skill_category.skills_list}\par
+\BLOCK{ endfor }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 %     WORK EXPERIENCE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,8 +70,23 @@ Github: \href{https://github.com/\VAR{github}}{github.com/\VAR{github}}
 \subsection*{\VAR{experience.role} at \VAR{experience.company}}
 \textbf{Duration:} \VAR{experience.start_date} -- \VAR{experience.end_date}\\
 \textbf{Location:} \VAR{experience.location}\\
-\VAR{experience.description}\\[1ex]
+\VAR{experience.description}\par
+\BLOCK{ endfor }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     EDUCATION
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Education}
+
+\BLOCK{ for edu in education }
+\subsection*{\VAR{edu.degree} at \VAR{edu.institution}}
+\textbf{Duration:} \VAR{edu.start_date} -- \VAR{edu.end_date}\\
+\textbf{Location:} \VAR{edu.location}\\
+\VAR{edu.description}\par
 \BLOCK{ endfor }
 
 \end{document}
+
 """
