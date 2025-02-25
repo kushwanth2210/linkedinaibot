@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from scripts.models import LanguageModels  
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from resume_project.storage.gdrive import GoogleDriveHandler  
+from storage.gdrive import GoogleDriveHandler  
 
 # Load environment variables
 load_dotenv()

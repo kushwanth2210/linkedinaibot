@@ -1,0 +1,14 @@
+langchain
+langchain_core
+langchain_anthropic
+langchain_community
+bs4
+langchain_google_genai
+dotenv
+pydrive
+pdflatex
+jinja2
+msal
+scikit-learn
+nltk
+pdfplumber

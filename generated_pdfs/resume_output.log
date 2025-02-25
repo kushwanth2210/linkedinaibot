@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.25)  25 FEB 2025 13:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.25)  25 FEB 2025 14:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -687,7 +687,7 @@ itute of Technology, Surat (SVNIT)}
 *
 (Please type a command or say `\end')
 *\end{document}
-[2] (/var/folders/g1/x7qnx6hd50lgwbrclg7flvpm0000gn/T/tmp0woxl49g/file.aux)
+[2] (/var/folders/g1/x7qnx6hd50lgwbrclg7flvpm0000gn/T/tmpj7_f3eb0/file.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -714,7 +714,7 @@ Here is how much of TeX's memory you used:
 /local/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/loca
 l/texlive/2024basic/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texl
 ive/2024basic/texmf-dist/fonts/type1/public/lm/lmr9.pfb>
-Output written on /var/folders/g1/x7qnx6hd50lgwbrclg7flvpm0000gn/T/tmp0woxl49g/
+Output written on /var/folders/g1/x7qnx6hd50lgwbrclg7flvpm0000gn/T/tmpj7_f3eb0/
 file.pdf (2 pages, 128775 bytes).
 PDF statistics:
  59 PDF objects out of 1000 (max. 8388607)
