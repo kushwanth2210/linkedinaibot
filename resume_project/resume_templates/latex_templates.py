@@ -1,4 +1,4 @@
-tex_template_content = r"""
+tex_template_content=r"""
 \documentclass[]{article}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
@@ -24,7 +24,7 @@ tex_template_content = r"""
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \namesection{\VAR{name}}{%
-\href{mailto:\VAR{email}}{\VAR{email}} | \href{tel:\VAR{phone}}{\VAR{phone}}%
+\href{mailto:\VAR{email}}{\VAR{email}} | \href{tel:\VAR{phone}}{\VAR{phone}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,12 +32,25 @@ tex_template_content = r"""
 %     LINKS
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Links}
 
 \noindent
 LinkedIn: \href{https://linkedin.com/in/\VAR{linkedin}}{linkedin.com/in/\VAR{linkedin}} \\
 Github: \href{https://github.com/\VAR{github}}{github.com/\VAR{github}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     WORK EXPERIENCE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Work Experience}
+
+\BLOCK{ for experience in work_experience }
+\subsection*{\VAR{experience.role} at \VAR{experience.company}}
+\textbf{Duration:} \VAR{experience.start_date} -- \VAR{experience.end_date}\\
+\textbf{Location:} \VAR{experience.location}\\
+\VAR{experience.description}\\[1ex]
+\BLOCK{ endfor }
 
 \end{document}
 """

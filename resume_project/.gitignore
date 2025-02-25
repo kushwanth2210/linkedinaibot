@@ -52,7 +52,3 @@ build/
 *.synctex*
 *.fls
 *.fdb_latexmk
-/Users/kushwanth/Documents/linkedinaibot/resume_project/storage/client_secrets.json
-/Users/kushwanth/Documents/linkedinaibot/client_secrets.json
-/Users/kushwanth/Documents/linkedinaibot/credentials.json
-/Users/kushwanth/Documents/linkedinaibot/generated_pdfs
