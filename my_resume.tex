@@ -1,0 +1,122 @@
+
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{microtype}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Blue,
+    urlcolor=Blue
+}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2em} % reduced spacing between paragraphs
+
+% Header command for name & contact info
+\newcommand{\namesection}[1]{%
+  \begin{center}
+    {\LARGE \textbf{#1}}
+  \end{center}
+}
+
+\begin{document}
+\sloppy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLE & CONTACT INFORMATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{Kushwanth Kumar Karamsetti}
+\begin{center}
+{\small \href{mailto:kkushwanth77@gmail.com}{kkushwanth77@gmail.com} \textbullet\ +1 (929) 361-8554 \textbullet\ \href{https://linkedin.com/in/kushwanthkaramsetti}{linkedin.com/in/kushwanthkaramsetti} \textbullet\ \href{https://github.com/kushwanth2210}{github.com/kushwanth2210}}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROFESSIONAL SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Professional Summary}
+Dynamic and results-driven Data Scientist and Generative AI expert with more than three years of professional experience in designing, deploying, and optimizing AI and data-driven solutions. Proficient in developing scalable machine learning pipelines, fine-tuning large language models, and implementing full-stack web applications. Skilled in leveraging cloud platforms, containerization, and modern frameworks (PyTorch, TensorFlow, LangChain). Adept at collaborating with cross-functional teams to deliver innovative solutions that enhance operational efficiency and drive business growth.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Skills}
+\textbf{Programming Languages}: Python, R, SQL, Java, PySpark, Linux\par
+\textbf{Cloud Platforms and DevOps}: AWS, Azure, Docker, Kubernetes, Datadog, Amazon Bedrock, Git, GitHub, SSH, Harness, Jenkins, Snowflake, Apache Airflow, ADF, AWS SageMaker, Databricks, Oracle SQL, MongoDB Atlas, PostgreSQL, SQL Server, Kafka, Pandas, PowerBI\par
+\textbf{Machine Learning}: PyTorch, TensorFlow, Scikit-learn, Regression, Hypothesis Testing, Feature Engineering, Model Deployment, Workflow Automation, Model Monitoring, Model Drift Detection, Data Drift Detection\par
+\textbf{Generative AI}: OpenCV, Deep Learning, NLP, Fine-tuning LLMs, Medical Imaging (Segmentation and Classification), Generative AI, RAG Implementation, Re-ranking, Hugging Face, Vector Databases, Embedding Models, Prompting Techniques, Whisper AI, Azure AI Studio, Langchain, LangGraph, LlamaIndex, Haystack, Vertex AI\par
+\textbf{Software Frameworks and Tools}: Flask, FastAPI, SciPy, Redis, gRPC, NumPy, Pandas, Agile (Scrum), CI/CD, MLOps/LLMOps (Airflow, Mlflow), Data Orchestration, WhyLabs, Splunk, Azure Cosmos DB, PowerBI\par
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% WORK EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Work Experience}
+\subsection*{Senior Data Scientist at Tror - AI for Everyone}
+\textbf{Duration:} Dec 2022 -- Present\quad
+\textbf{Location:} Nashville, TN\\
+
+\begin{itemize}
+  \item Developed a Generative AI chat agent using Langchain, LangGraph, LlamaIndex, and Haystack, incorporating multi-agent RAG workflows for seamless user-specific interactions.
+  \item Integrated multi-agent AI chatbots with RAG-enabled knowledge bases for document support, web search, tool calls, and secure fine-tuned model usage; leveraged MongoDB for chat history storage.
+  \item Streamlined workflows with Apache Airflow to process documents and embed data using open-source models.
+  \item Built APIs with FastAPI and gRPC microservices; integrated Confluence and GDrive for knowledge bases.
+  \item Improved chat performance with Redis Cache, minimizing database queries and reducing costs.
+  \item Adopted Agile Scrum practices with Jira for sprint planning and team collaboration.
+  \item Utilized APIs (GPT, Claude) and deployed open-source models like LLaMA on AWS SageMaker with Amazon Bedrock integration.
+  \item Integrated Stripe for payment processing and implemented voice transcription to enhance accessibility.
+  \item Created medical image segmentation models for brain and pancreas tumor detection using PyTorch.
+  \item Developed a voice transcription app with 95.6\% accuracy for North American accents using Whisper AI.
+  \item Utilized Kafka to build real-time data pipelines for efficient data streaming.
+  \item Monitored ML models for drift and performance issues using WhyLabs, Splunk, and Datadog.
+  \item Managed the full lifecycle of ML models, including deployment and integration into data pipelines and BI tools.
+  \item Enhanced data reliability using Azure Cosmos DB, AKS, Databricks, and MLOps best practices.
+  \item Implemented Docker and Kubernetes for containerization and orchestration of AI workflows.
+  \item Optimized PyTorch and TensorFlow pipelines on Ubuntu for resource-efficient training and inference.
+  \item Streamlined CI/CD pipelines for AI applications with Harness and Jenkins.
+\end{itemize}
+\par
+\subsection*{Data Engineer at Client: Kimberly-Clark, Tredence Solutions Private Limited}
+\textbf{Duration:} May 2022 -- Dec 2022\quad
+\textbf{Location:} Bangalore, India\\
+
+\begin{itemize}
+  \item Developed and managed data pipelines with Azure Data Factory (ADF), Snowflake, and Databricks to optimize data transformations.
+  \item Utilized PySpark on Azure Databricks for processing and analyzing large datasets.
+  \item Integrated Oracle SQL for advanced querying and data manipulation.
+  \item Implemented Apache Airflow for task scheduling, monitoring, and error handling.
+  \item Employed Azure DevOps for version control, CI/CD pipelines, and automated deployments.
+  \item Used Azure Boards for sprint planning and Agile task tracking.
+  \item Applied SDLC practices for scalable data engineering solutions.
+\end{itemize}
+\par
+\subsection*{Data Scientist Intern at Tror - AI for Everyone}
+\textbf{Duration:} May 2021 -- May 2022\quad
+\textbf{Location:} Hyderabad, India\\
+
+\begin{itemize}
+  \item Contributed to a Master Data Management (MDM) backend workflow using Langchain and PyTorch, integrating Redis cache for efficient data retrieval.
+  \item Assisted in a lung cancer detection project by implementing preprocessing techniques with OpenCV and TensorFlow, and improving segmentation with transformer-based models.
+  \item Developed an ETL pipeline with Apache Airflow to preprocess loan application data and deploy a binary classification ML model.
+\end{itemize}
+\par
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Education}
+\subsection*{Masters in Information Technology Management at Webster University}
+\textbf{Duration:} Sep 2023 -- Dec 2024\quad
+\textbf{Location:} San Antonio, TX\\
+GPA: 3.93/4.0\par
+\subsection*{Bachelor of Technology in Mechanical Engineering at National Institute of Technology, Surat (SVNIT)}
+\textbf{Duration:} Jul 2018 -- May 2022\quad
+\textbf{Location:} Surat, India\\
+GPA: 8.02/10.0\par
+
+\end{document}
