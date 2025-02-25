@@ -1,92 +1,77 @@
-tex_template_content=r"""
-\documentclass[]{article}
+tex_template_content = r"""
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{microtype}
+\usepackage[usenames,dvipsnames]{color}
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Blue,
+    urlcolor=Blue
+}
 \usepackage{fancyhdr}
-\usepackage{geometry}
-\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2em} % reduced spacing between paragraphs
 
-% Define \namesection command for the article class
-\newcommand{\namesection}[2]{%
+% Header command for name & contact info
+\newcommand{\namesection}[1]{%
   \begin{center}
-    {\Large \textbf{#1}}\\[1ex]
-    {#2}
+    {\LARGE \textbf{#1}}
   \end{center}
 }
 
-\pagestyle{fancy}
-\fancyhf{}
-
 \begin{document}
-\sloppy  % Relax line justification (or use \raggedright for left alignment)
+\sloppy
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     TITLE NAME
-%
+% TITLE & CONTACT INFORMATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\namesection{\VAR{name}}{%
-\href{mailto:\VAR{email}}{\VAR{email}} | \href{tel:\VAR{phone}}{\VAR{phone}}
-}
+\namesection{\VAR{name}}
+\begin{center}
+{\small \href{mailto:\VAR{email}}{\VAR{email}} \textbullet\ \VAR{phone} \textbullet\ \href{https://linkedin.com/in/\VAR{linkedin}}{linkedin.com/in/\VAR{linkedin}} \textbullet\ \href{https://github.com/\VAR{github}}{github.com/\VAR{github}}}
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     LINKS
-%
+% PROFESSIONAL SUMMARY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Links}
-
-\noindent
-LinkedIn: \href{https://linkedin.com/in/\VAR{linkedin}}{linkedin.com/in/\VAR{linkedin}} \\
-Github: \href{https://github.com/\VAR{github}}{github.com/\VAR{github}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     PROFESSIONAL SUMMARY
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Professional Summary}
-
+\section*{Professional Summary}
 \VAR{professional_summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     SKILLS
-%
+% SKILLS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Skills}
-
+\section*{Skills}
 \BLOCK{ for skill_category in skills }
 \textbf{\VAR{skill_category.category}}: \VAR{skill_category.skills_list}\par
 \BLOCK{ endfor }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     WORK EXPERIENCE
-%
+% WORK EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Work Experience}
-
+\section*{Work Experience}
 \BLOCK{ for experience in work_experience }
 \subsection*{\VAR{experience.role} at \VAR{experience.company}}
-\textbf{Duration:} \VAR{experience.start_date} -- \VAR{experience.end_date}\\
+\textbf{Duration:} \VAR{experience.start_date} -- \VAR{experience.end_date}\quad
 \textbf{Location:} \VAR{experience.location}\\
 \VAR{experience.description}\par
 \BLOCK{ endfor }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     EDUCATION
-%
+% EDUCATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Education}
-
+\section*{Education}
 \BLOCK{ for edu in education }
 \subsection*{\VAR{edu.degree} at \VAR{edu.institution}}
-\textbf{Duration:} \VAR{edu.start_date} -- \VAR{edu.end_date}\\
+\textbf{Duration:} \VAR{edu.start_date} -- \VAR{edu.end_date}\quad
 \textbf{Location:} \VAR{edu.location}\\
 \VAR{edu.description}\par
 \BLOCK{ endfor }
 
 \end{document}
-
 """
