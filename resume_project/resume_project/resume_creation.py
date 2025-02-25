@@ -2,7 +2,7 @@ import os
 import shutil
 from jinja2 import Environment
 from pdflatex import PDFLaTeX
-from storage.gdrive import GoogleDriveHandler  # Ensure your GoogleDriveHandler is correctly imported
+from storage.gdrive import GoogleDriveHandler  
 from templates.latex_template import tex_template_content
 
 # Custom Jinja2 environment configuration

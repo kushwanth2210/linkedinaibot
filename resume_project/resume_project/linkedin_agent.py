@@ -3,10 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from dotenv import load_dotenv
-from models import LanguageModels  # Import LanguageModels from models.py
+from scripts.models import LanguageModels  
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from storage.gdrive import GoogleDriveHandler  # Updated import for Google Drive handling
+from resume_project.storage.gdrive import GoogleDriveHandler  
 
 # Load environment variables
 load_dotenv()
