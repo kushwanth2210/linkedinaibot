@@ -23,7 +23,6 @@ pip-wheel-metadata/
 *.swo
 *.bak
 *.tmp
-*.log
 *.cache
 
 # Environment Variables
@@ -37,7 +36,6 @@ build/
 
 # LaTeX files
 *.aux
-*.log
 *.out
 *.toc
 *.lof
@@ -52,3 +50,8 @@ build/
 *.synctex*
 *.fls
 *.fdb_latexmk
+
+# User-Specific or Sensitive Files (Generalized)
+client_secrets.json
+credentials.json
+resume_project/.env
