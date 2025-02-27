@@ -55,3 +55,4 @@ build/
 client_secrets.json
 credentials.json
 resume_project/.env
+generated_pdfs/*
