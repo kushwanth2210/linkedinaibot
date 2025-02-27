@@ -9,14 +9,12 @@ This package provides modules for:
 
 __version__ = "0.1.0"
 
-from .update_resume import ResumeUpdater
-from .ats_evaluation import ATSAnalyzer
-from .resume_creation import ResumeGenerator
+# from .ats_evaluation import ATSAnalyzer
+from .resume_creation import JinjaLatexResume
 from .linkedin_agent import LinkedInJobScraper
 
 __all__ = [
-    "ResumeUpdater",
-    "ATSAnalyzer",
-    "ResumeGenerator",
+    # "ATSAnalyzer",
+    "JinjaLatexResume",
     "LinkedInJobScraper",
 ]
